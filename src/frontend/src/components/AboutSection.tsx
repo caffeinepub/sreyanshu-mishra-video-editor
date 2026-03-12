@@ -53,7 +53,7 @@ function AnimatedCounter({
     <span
       ref={ref}
       className={`font-display text-5xl md:text-6xl font-black ${
-        isAward ? "text-awards-red" : isBlue ? "text-stat-blue" : "text-gold"
+        isAward ? "text-awards-red" : isBlue ? "text-white/60" : "text-gold"
       }`}
     >
       {count}
@@ -229,7 +229,7 @@ export default function AboutSection() {
                   stat.isAward
                     ? "border-[#ff202060] animate-awards-pulse"
                     : stat.isBlue
-                      ? "border-[#00aaff40] animate-blue-pulse"
+                      ? "border-white/10"
                       : "border-border/50 hover:border-primary/50"
                 }`}
                 style={stat.isAward ? { cursor: "default" } : {}}
