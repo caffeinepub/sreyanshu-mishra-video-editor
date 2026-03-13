@@ -1,4 +1,3 @@
-import { ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
 import { Suspense, lazy, useMemo } from "react";
 
@@ -116,41 +115,119 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex items-center justify-center"
         >
-          <button
-            type="button"
-            data-ocid="hero.primary_button"
-            onClick={() =>
-              document
-                .querySelector("#work")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="shimmer-border px-8 py-4 bg-gold text-black font-bold text-sm tracking-widest uppercase rounded-sm hover:shadow-gold-strong transition-all duration-300 hover:scale-105 gold-glow"
-          >
-            View My Work
-          </button>
-          <button
-            type="button"
-            data-ocid="hero.secondary_button"
-            onClick={() =>
-              document
-                .querySelector("#contact")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="shimmer-border px-8 py-4 border border-primary text-primary font-bold text-sm tracking-widest uppercase rounded-sm hover:bg-primary/10 transition-all duration-300 hover:scale-105"
-          >
-            Let&apos;s Collaborate
-          </button>
+          <LookOverButton />
         </motion.div>
       </div>
-
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
-        <span className="text-xs text-white/40 tracking-widest uppercase">
-          Scroll
-        </span>
-        <ChevronDown className="text-gold animate-scroll-bounce" size={20} />
-      </div>
     </section>
+  );
+}
+
+function LookOverButton() {
+  const handleClick = () => {
+    document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <button
+      type="button"
+      data-ocid="hero.primary_button"
+      onClick={handleClick}
+      className="group relative select-none"
+      style={{
+        outline: "none",
+        border: "none",
+        background: "none",
+        padding: 0,
+        cursor: "pointer",
+      }}
+    >
+      {/* Outer glow halo */}
+      <span
+        className="absolute inset-0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: "transparent",
+          boxShadow:
+            "0 0 40px 12px oklch(78% 0.18 80 / 0.45), 0 0 80px 24px oklch(65% 0.15 75 / 0.2)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* The 3D button face */}
+      <span
+        className="block px-12 py-5 text-sm font-black uppercase tracking-widest text-black transition-all duration-100 rounded-sm group-active:translate-x-[4px] group-active:translate-y-[4px]"
+        style={{
+          background:
+            "linear-gradient(145deg, #e8bc3a 0%, #c9a227 40%, #a07820 70%, #7a5c14 100%)",
+          boxShadow:
+            "4px 4px 0px #6b5010, 8px 8px 0px #4a380a, 12px 12px 0px #2e220600, inset -2px -2px 0px rgba(0,0,0,0.35), inset 2px 2px 0px rgba(255,240,180,0.45), 0 2px 4px rgba(0,0,0,0.6)",
+          textShadow: "0 1px 0 rgba(255,255,200,0.5), 0 -1px 0 rgba(0,0,0,0.3)",
+          letterSpacing: "0.25em",
+          transform: "translateZ(0)",
+          willChange: "transform, box-shadow",
+          transition: "box-shadow 0.1s ease, transform 0.1s ease",
+        }}
+        onMouseEnter={(e) => {
+          const el = e.currentTarget as HTMLSpanElement;
+          el.style.boxShadow =
+            "2px 2px 0px #6b5010, 4px 4px 0px #4a380a, inset -2px -2px 0px rgba(0,0,0,0.4), inset 2px 2px 0px rgba(255,240,180,0.3), 0 1px 2px rgba(0,0,0,0.5)";
+          el.style.transform = "translateX(4px) translateY(4px) translateZ(0)";
+        }}
+        onMouseLeave={(e) => {
+          const el = e.currentTarget as HTMLSpanElement;
+          el.style.boxShadow =
+            "4px 4px 0px #6b5010, 8px 8px 0px #4a380a, 12px 12px 0px #2e220600, inset -2px -2px 0px rgba(0,0,0,0.35), inset 2px 2px 0px rgba(255,240,180,0.45), 0 2px 4px rgba(0,0,0,0.6)";
+          el.style.transform = "translateZ(0)";
+        }}
+        onMouseDown={(e) => {
+          const el = e.currentTarget as HTMLSpanElement;
+          el.style.boxShadow =
+            "0px 0px 0px #6b5010, 1px 1px 0px #4a380a, inset -3px -3px 2px rgba(0,0,0,0.5), inset 3px 3px 2px rgba(255,240,180,0.15)";
+          el.style.transform = "translateX(8px) translateY(8px) translateZ(0)";
+        }}
+        onMouseUp={(e) => {
+          const el = e.currentTarget as HTMLSpanElement;
+          el.style.boxShadow =
+            "2px 2px 0px #6b5010, 4px 4px 0px #4a380a, inset -2px -2px 0px rgba(0,0,0,0.4), inset 2px 2px 0px rgba(255,240,180,0.3), 0 1px 2px rgba(0,0,0,0.5)";
+          el.style.transform = "translateX(4px) translateY(4px) translateZ(0)";
+        }}
+      >
+        {/* Engraved bevel top edge highlight */}
+        <span
+          className="absolute top-0 left-0 right-0 h-px"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, rgba(255,248,200,0.8), transparent)",
+            pointerEvents: "none",
+          }}
+        />
+        {/* Engraved bevel left edge highlight */}
+        <span
+          className="absolute top-0 left-0 bottom-0 w-px"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(255,248,200,0.8), transparent)",
+            pointerEvents: "none",
+          }}
+        />
+        Look Over
+      </span>
+
+      {/* Bottom-right depth face (the 3D side panels) */}
+      <span
+        className="absolute pointer-events-none"
+        style={{
+          bottom: "-12px",
+          left: "8px",
+          right: "-12px",
+          height: "12px",
+          background: "linear-gradient(180deg, #4a380a, #2e2206)",
+          transform: "skewX(-45deg) scaleX(0.707)",
+          transformOrigin: "top right",
+          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+        }}
+      />
+    </button>
   );
 }

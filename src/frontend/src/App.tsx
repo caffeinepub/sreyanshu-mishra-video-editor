@@ -1,9 +1,9 @@
 import { Toaster } from "@/components/ui/sonner";
 import AboutSection from "./components/AboutSection";
-import ContactSection from "./components/ContactSection";
 import CursorTrail from "./components/CursorTrail";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
+import HireMeSection from "./components/HireMeSection";
 import Navigation from "./components/Navigation";
 import PortfolioSection from "./components/PortfolioSection";
 import ServicesSection from "./components/ServicesSection";
@@ -19,7 +19,7 @@ export default function App() {
       <PortfolioSection />
       <ToolsSection />
       <ServicesSection />
-      <ContactSection />
+      <HireMeSection />
       <Footer />
       <Toaster />
     </div>
